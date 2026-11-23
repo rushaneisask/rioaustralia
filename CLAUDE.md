@@ -33,6 +33,7 @@ Read `AGENTS.md` too (Next.js 16 rules: check `node_modules/next/dist/docs/` bef
 - `src/components/three/Stage.tsx` is the **only** WebGL wrapper. At most one canvas per section. It pauses rendering offscreen, caps DPR per device tier, and hands scenes the tier from `useDeviceTier` (high/mid/low).
 - **No external 3D assets, HDRIs or image textures.** Models are built in code (`three/equipment.tsx`), textures are generated in code (`three/textures.ts`), and lighting uses Lightformer rigs (`three/StudioLights.tsx`).
 - **Don't use `transmission` on transparent canvases.** It refracts the transparent background and renders black. Use `MeshTransmissionMaterial` with a `background` colour, or a transparent physical material.
+- **Always render post-processing through `<Effects>`, never `<EffectComposer>` directly.** `@react-three/postprocessing` 3.2.x shares one size variable across all canvases, which shrank every canvas on a page to the size of the last one (the method scene ended up in a corner). `Effects` includes `RendererSizeGuard`, which fixes this.
 - Post-processing (`three/Effects.tsx`): AO only on high, bloom and vignette on mid and high, none on low. Keep emissive and bright colours under the bloom threshold unless they should glow.
 - Hero canvases are full-bleed behind the copy on desktop, and `useHeroLayout()` shifts the content right. On phones the scene sits under the copy and is scaled to fit.
 - Respect `prefers-reduced-motion`: show content in its final state, with no pinning or scrubbing.
