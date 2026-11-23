@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "research:rates": "tsx tools/market-rates/run.ts",
+    "test:pricing": "tsx tools/pricing/selftest.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",
@@ -21,6 +23,7 @@
     "three": "^0.187.0"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^1.12.0",
     "@tailwindcss/turbopack": "4.3.3",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -29,6 +32,8 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
     "tailwindcss": "4.3.3",
-    "typescript": "^5"
+    "tsx": "^4.23.15",
+    "typescript": "^5",
+    "zod": "^4.6.7"
   }
 }

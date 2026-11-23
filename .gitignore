@@ -42,3 +42,6 @@ next-env.d.ts
 
 # private business notes (repo is public)
 CLAUDE.local.md
+
+# market research output (competitor pricing, kept private)
+/research/
