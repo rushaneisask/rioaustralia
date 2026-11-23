@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   RIO Australia design tokens
+   Bright, fresh, water-inspired. Aqua/teal carries the brand, coral is
+   the small "splash" accent (logo sparkle, key words, focus details).
+   Coral is decorative or large-text only: it is under 4.5:1 on white.
+   ------------------------------------------------------------------ */
+:root {
+  --mist: #f3fbfb;        /* page background */
+  --foam: #ffffff;        /* cards */
+  --ink: #0b2a33;         /* headings + body text (15.6:1 on white) */
+  --ink-soft: #3f5d66;    /* secondary text (6.9:1 on white) */
+  --line: #d5ecee;        /* borders */
+  --teal-900: #073b45;
+  --teal-700: #0b7a85;    /* buttons, links (5.1:1 with white text) */
+  --aqua-500: #19b8c4;    /* graphics, highlights */
+  --aqua-300: #7adde3;
+  --aqua-100: #ddf6f7;
+  --coral: #ff6b4a;       /* the splash */
+  --coral-soft: #ffe3db;
+
+  /* Brand slot, switched per section of the business with [data-brand] */
+  --brand: var(--teal-700);
+  --brand-bright: var(--aqua-500);
+  --brand-tint: var(--aqua-100);
+}
+
+[data-brand="group"] {
+  --brand: #0a6f7a;
+  --brand-bright: #14a9b6;
+  --brand-tint: #dbf3f5;
+}
+
+[data-brand="cleaning"] {
+  --brand: #0b7a85;
+  --brand-bright: #19b8c4;
+  --brand-tint: #ddf6f7;
+}
+
+@theme inline {
+  --color-mist: var(--mist);
+  --color-foam: var(--foam);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-teal-900: var(--teal-900);
+  --color-teal-700: var(--teal-700);
+  --color-aqua-500: var(--aqua-500);
+  --color-aqua-300: var(--aqua-300);
+  --color-aqua-100: var(--aqua-100);
+  --color-coral: var(--coral);
+  --color-coral-soft: var(--coral-soft);
+  --color-brand: var(--brand);
+  --color-brand-bright: var(--brand-bright);
+  --color-brand-tint: var(--brand-tint);
+  --font-display: var(--font-outfit);
+  --font-sans: var(--font-dm-sans);
+}
+
+html {
+  background: var(--mist);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  background: var(--mist);
+  color: var(--ink);
+  overflow-x: clip;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p { text-wrap: pretty; }
+
+::selection { background: var(--aqua-300); color: var(--teal-900); }
+
+:focus-visible {
+  outline: 3px solid var(--aqua-500);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* Soft water caustic background used behind hero sections */
+.bg-caustic {
+  background:
+    radial-gradient(60% 50% at 80% 10%, rgba(122, 221, 227, 0.45), transparent 70%),
+    radial-gradient(50% 45% at 10% 30%, rgba(25, 184, 196, 0.18), transparent 70%),
+    radial-gradient(40% 40% at 60% 90%, rgba(255, 107, 74, 0.08), transparent 70%),
+    linear-gradient(180deg, #f7fdfd 0%, var(--mist) 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--teal-700) 0%, var(--aqua-500) 60%, var(--teal-700) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
